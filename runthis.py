@@ -41,8 +41,8 @@ class dian:
             ydata = event.ydata
             index_01 = 0
             for i in x:
-                if abs(i - xdata) < 0.02:
-                    if abs(self.ys[index_01] - ydata) < 0.02: break
+                if abs(i - xdata) < 0.019:
+                    if abs(self.ys[index_01] - ydata) < 0.019: break
                 index_01 = index_01 + 1
             self.index_02 = index_01
         if self.index_02 is None: return
@@ -101,7 +101,6 @@ class lian:
         if n > m:
             M = makeM(self.x1, self.y1, self.x2, self.y2)  # 创造相似度矩阵nm*nm
             ans_sm = sm_mehod(n, m, M)  # sm方法
-            print(ans_sm)
             xy = gm(ans_sm)  # 结果贪心算法获取匹配点下标
             for i, j in xy:
                 x1 = self.x1[i]
@@ -116,7 +115,6 @@ class lian:
                 self.fig.lines.append(line)
 
             ans_ga = ga_mehod(n, m, M)
-            print(ans_ga)
             xy = gm(ans_ga)
             for i, j in xy:
                 x1 = self.x1[i]
