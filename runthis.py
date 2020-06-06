@@ -41,10 +41,11 @@ class dian:
             ydata = event.ydata
             index_01 = 0
             for i in x:
-                if abs(i - xdata) < 0.019:
-                    if abs(self.ys[index_01] - ydata) < 0.019: break
+                if abs(i - xdata) < 0.02:
+                    if abs(self.ys[index_01] - ydata) < 0.02: break
                 index_01 = index_01 + 1
-            self.index_02 = index_01
+            if index_01 < len(x):
+                self.index_02 = index_01
         if self.index_02 is None: return
         self.xs[self.index_02] = event.xdata
         self.ys[self.index_02] = event.ydata
@@ -64,8 +65,9 @@ class dian:
                 if abs(i - xdata) < 0.02:
                     if abs(self.ys[index_01] - ydata) < 0.02: break
                 index_01 = index_01 + 1
-            self.xs.pop(index_01)
-            self.ys.pop(index_01)
+            if index_01 < len(x):
+                self.xs.pop(index_01)
+                self.ys.pop(index_01)
         self.draw_01()
         self.pick = None
         self.motion = None
@@ -86,6 +88,7 @@ class dian:
 class lian:
     def __init__(self, fig, ax1, ax2):
         self.fig = fig
+        self.fig.canvas.mpl_disconnect(fig.canvas.manager.key_press_handler_id)
         self.keybordpress = self.fig.canvas.mpl_connect('key_press_event', self.on_key_press)
         self.ax2 = ax2.line
         self.ax1 = ax1.line
@@ -163,7 +166,6 @@ class lian:
 
 if __name__ == '__main__':
     fig = plt.figure("redlines-sm,greenlines-ga,press any key to makegraphmaching", figsize=(12, 6))  #
-    fig.canvas.mpl_disconnect(fig.canvas.manager.key_press_handler_id)
     ax2 = fig.add_subplot(122)
     ax1 = fig.add_subplot(121)
     g1 = dian(ax1)
