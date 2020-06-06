@@ -2,7 +2,7 @@
 A graduated assignment algorithm and SM method for graph matching
 # requirement
 python==3.7.4  matplotlib==3.1.1  numpy==1.16.5   
-clik to creat/move/delete point 
+clik to creat/move/delete point   
 press any key to match points   
 redlines-SM   
 greenlines-GA
